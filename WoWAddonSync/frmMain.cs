@@ -34,11 +34,13 @@ namespace WoWUtility
         private void btnDurchsuchen1_Click(object sender, EventArgs e)
         {
             txtPath1.Text = GF.OpenFileDialog();
+            MySet.wowPath1 = txtPath1.Text;
         }
 
         private void btnDurchsuchen2_Click_1(object sender, EventArgs e)
         {
             txtPath2.Text = GF.OpenFileDialog();
+            MySet.wowPath2 = txtPath2.Text;
         }
 
         private void btnGo_Click(object sender, EventArgs e)
@@ -67,7 +69,12 @@ namespace WoWUtility
 
         private void btnMacro_Click(object sender, EventArgs e)
         {
-            MT = new MacroTranslator(true, GF.OpenFileDialog(), MySet.GetSpellList());
+            MT = new MacroTranslator(true, txtPath1.Text, MySet.GetSpellList());
+        }
+
+        private void btnMacro2_Click(object sender, EventArgs e)
+        {
+            MT = new MacroTranslator(false, txtPath1.Text, MySet.GetSpellList());
         }
     }
 }

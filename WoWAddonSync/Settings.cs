@@ -58,7 +58,7 @@ namespace WoWUtility
             Text[0] = "German:English";
             Text[1] = "Fluch der Sprachen:Curse of Tongues";
           
-            File.WriteAllLines(localeFilePath,Text);           
+            File.WriteAllLines(localeFilePath,Text,Encoding.UTF8);           
         }
 
         private void FillSpellList(string LocaleFileName = "")
@@ -77,6 +77,29 @@ namespace WoWUtility
         {
             FillSpellList(localeFilePath);
             return Spells;
+        }
+
+
+        public string wowPath1, wowPath2;
+
+        public void SaveSettings()
+        {
+            string[] Text;
+
+            Text = new string[2];
+
+            Text[0] = "wowPath1=" + wowPath1;
+            Text[1] = "wowPath2=" + wowPath2;
+
+            File.WriteAllLines(settingsFilePath, Text, Encoding.UTF8);
+        }
+
+        public void LoadSettings()
+        {
+            string[] Text = File.ReadAllLines(settingsFilePath, Encoding.UTF8);
+
+            wowPath1 = Text[0].Replace("wowPath1=", "");
+            wowPath2 = Text[1].Replace("wowPath2=", "");
         }
     }
 }
